@@ -8,6 +8,10 @@ namespace PolynomialTask
     {
         private readonly double[] coefficients;
 
+        /// <summary>
+        /// Makes a copy of the array.
+        /// </summary>
+        /// <param name="coef"></param>
         public Polynomial(params double[] coef)
         {
             if (coef == null)
@@ -17,6 +21,10 @@ namespace PolynomialTask
             coef.CopyTo(coefficients, 0);
         }
 
+        /// <summary>
+        /// Makes a string from an array.
+        /// </summary>
+        /// <returns>String representation of the array.</returns>
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -33,6 +41,10 @@ namespace PolynomialTask
             return str.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Array hash code.</returns>
         public override int GetHashCode()
         {
             int hash = 0;
@@ -43,6 +55,11 @@ namespace PolynomialTask
             return hash;
         }
 
+        /// <summary>
+        /// Compares two polynomials.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -54,16 +71,34 @@ namespace PolynomialTask
             return coefficients.SequenceEqual(((Polynomial)obj).coefficients);
         }
 
+        /// <summary>
+        /// Overload ==
+        /// </summary>
+        /// <param name="polynomial1"></param>
+        /// <param name="polynomial2"></param>
+        /// <returns></returns>
         public static bool operator ==(Polynomial polynomial1, Polynomial polynomial2)
         {
             return polynomial1.Equals(polynomial2);
         }
 
+        /// <summary>
+        /// Overload !=
+        /// </summary>
+        /// <param name="polynomial1"></param>
+        /// <param name="polynomial2"></param>
+        /// <returns></returns>
         public static bool operator !=(Polynomial polynomial1, Polynomial polynomial2)
         {
             return !polynomial1.Equals(polynomial2);
         }
 
+        /// <summary>
+        /// Overload +
+        /// </summary>
+        /// <param name="polynomial1"></param>
+        /// <param name="polynomial2"></param>
+        /// <returns></returns>
         public static Polynomial operator +(Polynomial polynomial1, Polynomial polynomial2)
         {
             var max = polynomial1.coefficients.Length > polynomial2.coefficients.Length ?
@@ -81,6 +116,12 @@ namespace PolynomialTask
             return new Polynomial(array);
         }
 
+        /// <summary>
+        /// Overload -
+        /// </summary>
+        /// <param name="polynomial1"></param>
+        /// <param name="polynomial2"></param>
+        /// <returns></returns>
         public static Polynomial operator -(Polynomial polynomial1, Polynomial polynomial2)
         {
             var max = polynomial1.coefficients.Length > polynomial2.coefficients.Length ?
@@ -99,6 +140,12 @@ namespace PolynomialTask
             return new Polynomial(array);
         }
 
+        /// <summary>
+        /// Overload *
+        /// </summary>
+        /// <param name="polynomial1"></param>
+        /// <param name="polynomial2"></param>
+        /// <returns></returns>
         public static Polynomial operator *(Polynomial polynomial1, Polynomial polynomial2)
         {
             var array = new double[polynomial1.coefficients.Length + polynomial2.coefficients.Length - 1];
